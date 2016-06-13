@@ -17,6 +17,8 @@ func GetXML(v interface{}, target interface{}) error {
 		return err
 	}
 
+	req.Header.Set("Content-Type", "text/xml")
+
 	res, err := config.Client.Do(req)
 	if err != nil {
 		return err

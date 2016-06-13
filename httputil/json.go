@@ -17,6 +17,8 @@ func GetJSON(v interface{}, target interface{}) error {
 		return err
 	}
 
+	req.Header.Set("Content-Type", "application/json")
+
 	res, err := config.Client.Do(req)
 	if err != nil {
 		return err
