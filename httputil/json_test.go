@@ -9,7 +9,7 @@ import (
 	"github.com/frozzare/go-assert"
 )
 
-type Person struct {
+type JSONPerson struct {
 	Name string
 }
 
@@ -21,7 +21,7 @@ func TestGetJSON(t *testing.T) {
 		fmt.Fprintf(w, "{\"name\":\"Fredrik\"}")
 	}))
 
-	actual := &Person{}
+	actual := &JSONPerson{}
 	err := GetJSON(server.URL, &actual)
 
 	assert.Nil(t, err)
@@ -31,15 +31,15 @@ func TestGetJSON(t *testing.T) {
 func TestGetJSONResponseError(t *testing.T) {
 	mux := http.NewServeMux()
 	server := httptest.NewServer(mux)
-	actual := &Person{}
+	actual := &JSONPerson{}
 	err := GetJSON(server.URL, &actual)
 
 	assert.NotNil(t, err)
 	assert.Equal(t, "", actual.Name)
 }
 
-func TestGETJSONStructError(t *testing.T) {
-	actual := &Person{}
+func TestGetJSONStructError(t *testing.T) {
+	actual := &JSONPerson{}
 	err := GetJSON(1, &actual)
 
 	assert.NotNil(t, err)

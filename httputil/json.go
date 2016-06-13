@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-// GetJSON will bind response body from a url to a struct or return a error.
+// GetJSON will bind JSON response from a url to a struct or return a error.
 func GetJSON(v interface{}, target interface{}) error {
 	config, err := getConfig(v)
 	if err != nil {
