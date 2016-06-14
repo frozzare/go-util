@@ -21,6 +21,34 @@ func getArgInt(def int, i int, args ...interface{}) int {
 	return getArg(def, i, args...).(int)
 }
 
+// ToBool will convert argument to bool or return a error.
+func ToBool(value interface{}) (bool, error) {
+	ref := reflect.ValueOf(value)
+
+	switch value.(type) {
+	case bool:
+		return value.(bool), nil
+	case float32:
+		v, _ := value.(float32)
+
+		return v > 0, nil
+	case float64:
+		v, _ := value.(float64)
+
+		return v > 0, nil
+	case int, int8, int16, int32, int64:
+		return ref.Int() > 0, nil
+	case uint, uint8, uint16, uint32, uint64:
+		return ref.Uint() > 0, nil
+	case string:
+		v, _ := value.(string)
+
+		return strconv.ParseBool(v)
+	default:
+		return false, errors.New("Unknown type")
+	}
+}
+
 // ToFloat32 will convert argument to float32 or return a error.
 func ToFloat32(value interface{}) (float32, error) {
 	ref := reflect.ValueOf(value)
