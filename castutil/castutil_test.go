@@ -80,6 +80,8 @@ func TestToInt(t *testing.T) {
 		{float32(0.1), 0},
 		{float64(1.1), 1},
 		{float64(1.348959), 1},
+		{"1", 1},
+		{"1.2", 1},
 	}
 
 	for _, item := range test {

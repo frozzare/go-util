@@ -112,8 +112,13 @@ func ToInt(value interface{}) (int, error) {
 		return int(ref.Uint()), nil
 	case string:
 		v, _ := value.(string)
+		f, err := strconv.ParseFloat(v, 64)
 
-		return strconv.Atoi(v)
+		if err != nil {
+			return 0, err
+		}
+
+		return int(f), nil
 	default:
 		return 0, errors.New("Unknown type")
 	}
