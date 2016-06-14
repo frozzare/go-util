@@ -24,6 +24,7 @@ func TestToFloat32(t *testing.T) {
 		{float32(0.1), 0.10000000149011612},
 		{float64(1.1), 1.1},
 		{float64(1.348959), 1.348959},
+		{"1.2", 1.2},
 	}
 
 	for _, item := range test {
@@ -51,6 +52,7 @@ func TestToFloat64(t *testing.T) {
 		{float32(0.1), 0.10000000149011612},
 		{float64(1.1), 1.1},
 		{float64(1.348959), 1.348959},
+		{"1.2", 1.2},
 	}
 
 	for _, item := range test {
