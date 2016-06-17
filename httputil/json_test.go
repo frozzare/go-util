@@ -37,11 +37,3 @@ func TestGetJSONResponseError(t *testing.T) {
 	assert.NotNil(t, err)
 	assert.Equal(t, "", actual.Name)
 }
-
-func TestGetJSONStructError(t *testing.T) {
-	actual := &JSONPerson{}
-	err := GetJSON(1, &actual)
-
-	assert.NotNil(t, err)
-	assert.Equal(t, "", actual.Name)
-}

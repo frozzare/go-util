@@ -7,18 +7,34 @@ import (
 	"time"
 )
 
+// Client is the custom http client.
+type Client struct {
+	*http.Client
+}
+
+// Config represents httputil config.
+type Config struct {
+	DualStack  bool
+	SkipVerify bool
+	Timeout    time.Duration
+}
+
 // NewClient will create a new http client instance.
-func NewClient(timeout time.Duration, dualStack, skipVerify bool) *http.Client {
+func NewClient(config *Config) *Client {
+	if config == nil {
+		config = &Config{}
+	}
+
 	t := &http.Transport{
 		Dial: (&net.Dialer{
-			DualStack: dualStack,
-			Timeout:   timeout,
+			DualStack: config.DualStack,
+			Timeout:   config.Timeout,
 		}).Dial,
 	}
 
-	if skipVerify {
+	if config.SkipVerify {
 		t.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	}
 
-	return &http.Client{Transport: t}
+	return &Client{&http.Client{Transport: t}}
 }

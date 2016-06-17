@@ -39,11 +39,3 @@ func TestGetXMLResponseError(t *testing.T) {
 	assert.NotNil(t, err)
 	assert.Equal(t, "", actual.Name)
 }
-
-func TestGetXMLStructError(t *testing.T) {
-	actual := &XMLPerson{}
-	err := GetXML(1, &actual)
-
-	assert.NotNil(t, err)
-	assert.Equal(t, "", actual.Name)
-}

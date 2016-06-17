@@ -5,21 +5,16 @@ import (
 	"net/http"
 )
 
-// GetJSON will bind JSON response from a url to a struct or return a error.
-func GetJSON(v interface{}, target interface{}) error {
-	config, err := getConfig(v)
-	if err != nil {
-		return err
-	}
-
-	req, err := http.NewRequest("GET", config.URL, nil)
+// GetJSON will bind JSON response from a url or return a error.
+func (s *Client) GetJSON(url string, target interface{}) error {
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return err
 	}
 
 	req.Header.Set("Content-Type", "application/json")
 
-	res, err := config.Client.Do(req)
+	res, err := s.Do(req)
 	if err != nil {
 		return err
 	}
@@ -27,4 +22,9 @@ func GetJSON(v interface{}, target interface{}) error {
 	defer res.Body.Close()
 
 	return json.NewDecoder(res.Body).Decode(target)
+}
+
+// GetJSON will bind JSON response from a url or return a error.
+func GetJSON(url string, target interface{}) error {
+	return NewClient(nil).GetJSON(url, target)
 }

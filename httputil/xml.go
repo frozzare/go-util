@@ -5,21 +5,16 @@ import (
 	"net/http"
 )
 
-// GetXML will bind XML response from a url to a struct or return a error.
-func GetXML(v interface{}, target interface{}) error {
-	config, err := getConfig(v)
-	if err != nil {
-		return err
-	}
-
-	req, err := http.NewRequest("GET", config.URL, nil)
+// GetXML will bind XML response from a url or return a error.
+func (s *Client) GetXML(url string, target interface{}) error {
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return err
 	}
 
 	req.Header.Set("Content-Type", "text/xml")
 
-	res, err := config.Client.Do(req)
+	res, err := s.Do(req)
 	if err != nil {
 		return err
 	}
@@ -27,4 +22,9 @@ func GetXML(v interface{}, target interface{}) error {
 	defer res.Body.Close()
 
 	return xml.NewDecoder(res.Body).Decode(target)
+}
+
+// GetXML will bind XML response from a url or return a error.
+func GetXML(url string, target interface{}) error {
+	return NewClient(nil).GetXML(url, target)
 }
