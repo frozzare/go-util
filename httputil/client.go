@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// Client is the custom http client.
+// Client represents the custom http client.
 type Client struct {
 	*http.Client
 }
