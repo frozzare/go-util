@@ -12,7 +12,7 @@ type Client struct {
 	*http.Client
 }
 
-// Config represents httputil config.
+// Config represents client config.
 type Config struct {
 	DualStack  bool
 	SkipVerify bool
