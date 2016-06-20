@@ -23,8 +23,6 @@ func getArgInt(def int, i int, args ...interface{}) int {
 
 // ToBool will convert argument to bool or return a error.
 func ToBool(value interface{}) (bool, error) {
-	ref := reflect.ValueOf(value)
-
 	switch value.(type) {
 	case bool:
 		return value.(bool), nil
@@ -37,9 +35,13 @@ func ToBool(value interface{}) (bool, error) {
 
 		return v > 0, nil
 	case int, int8, int16, int32, int64:
-		return ref.Int() > 0, nil
+		v := reflect.ValueOf(value).Int()
+
+		return v > 0, nil
 	case uint, uint8, uint16, uint32, uint64:
-		return ref.Uint() > 0, nil
+		v := reflect.ValueOf(value).Uint()
+
+		return v > 0, nil
 	case string:
 		v, _ := value.(string)
 
@@ -51,8 +53,6 @@ func ToBool(value interface{}) (bool, error) {
 
 // ToFloat32 will convert argument to float32 or return a error.
 func ToFloat32(value interface{}) (float32, error) {
-	ref := reflect.ValueOf(value)
-
 	switch value.(type) {
 	case bool:
 		if value.(bool) {
@@ -69,9 +69,13 @@ func ToFloat32(value interface{}) (float32, error) {
 
 		return float32(v), nil
 	case int, int8, int16, int32, int64:
-		return float32(ref.Int()), nil
+		v := reflect.ValueOf(value).Int()
+
+		return float32(v), nil
 	case uint, uint8, uint16, uint32, uint64:
-		return float32(ref.Uint()), nil
+		v := reflect.ValueOf(value).Uint()
+
+		return float32(v), nil
 	case string:
 		v, _ := value.(string)
 		f, err := strconv.ParseFloat(v, 32)
@@ -84,8 +88,6 @@ func ToFloat32(value interface{}) (float32, error) {
 
 // ToFloat64 will convert argument to float64 or return a error.
 func ToFloat64(value interface{}) (float64, error) {
-	ref := reflect.ValueOf(value)
-
 	switch value.(type) {
 	case bool:
 		if value.(bool) {
@@ -102,9 +104,13 @@ func ToFloat64(value interface{}) (float64, error) {
 
 		return float64(v), nil
 	case int, int8, int16, int32, int64:
-		return float64(ref.Int()), nil
+		v := reflect.ValueOf(value).Int()
+
+		return float64(v), nil
 	case uint, uint8, uint16, uint32, uint64:
-		return float64(ref.Uint()), nil
+		v := reflect.ValueOf(value).Uint()
+
+		return float64(v), nil
 	case string:
 		v, _ := value.(string)
 		f, err := strconv.ParseFloat(v, 64)
@@ -117,8 +123,6 @@ func ToFloat64(value interface{}) (float64, error) {
 
 // ToInt will convert argument to int or return a error.
 func ToInt(value interface{}) (int, error) {
-	ref := reflect.ValueOf(value)
-
 	switch value.(type) {
 	case bool:
 		if value.(bool) {
@@ -135,9 +139,13 @@ func ToInt(value interface{}) (int, error) {
 
 		return int(v), nil
 	case int, int8, int16, int32, int64:
-		return int(ref.Int()), nil
+		v := reflect.ValueOf(value).Int()
+
+		return int(v), nil
 	case uint, uint8, uint16, uint32, uint64:
-		return int(ref.Uint()), nil
+		v := reflect.ValueOf(value).Uint()
+
+		return int(v), nil
 	case string:
 		v, _ := value.(string)
 		f, err := strconv.ParseFloat(v, 64)
