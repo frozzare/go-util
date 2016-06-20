@@ -7,19 +7,6 @@ import (
 	"unicode/utf8"
 )
 
-// Chop chops the string with the given length and returns a string slice.
-func Chop(s string, l int) []string {
-	r, _ := regexp.Compile(".{1," + strconv.Itoa(l) + "}")
-	matches := r.FindAllStringSubmatch(s, -1)
-	res := []string{}
-
-	for i := 0; i < len(matches); i++ {
-		res = append(res, string(matches[i][0]))
-	}
-
-	return res
-}
-
 // Chars returns all characters a string slice.
 func Chars(s string) []string {
 	res := []string{}
@@ -31,20 +18,17 @@ func Chars(s string) []string {
 	return res
 }
 
-// SwapCase returns a string where uppercase is swapped with lowercase and lowercase to uppercase and vice versa.
-func SwapCase(s string) string {
-	runes := []rune(s)
+// Chop chops the string with the given length and returns a string slice.
+func Chop(s string, l int) []string {
+	r, _ := regexp.Compile(".{1," + strconv.Itoa(l) + "}")
+	matches := r.FindAllStringSubmatch(s, -1)
+	res := []string{}
 
-	for i := 0; i < len(runes); i++ {
-		c := string(runes[i])
-		if c == strings.ToUpper(c) {
-			runes[i] = []rune(strings.ToLower(c))[0]
-		} else {
-			runes[i] = []rune(strings.ToUpper(c))[0]
-		}
+	for i := 0; i < len(matches); i++ {
+		res = append(res, string(matches[i][0]))
 	}
 
-	return string(runes)
+	return res
 }
 
 // Insert inserts a new string at a given index and returns the string.
@@ -63,6 +47,22 @@ func Reverse(s string) string {
 
 	for i, l := 0, len(runes)-1; i < l; i, l = i+1, l-1 {
 		runes[i], runes[l] = runes[l], runes[i]
+	}
+
+	return string(runes)
+}
+
+// SwapCase returns a string where uppercase is swapped with lowercase and lowercase to uppercase and vice versa.
+func SwapCase(s string) string {
+	runes := []rune(s)
+
+	for i := 0; i < len(runes); i++ {
+		c := string(runes[i])
+		if c == strings.ToUpper(c) {
+			runes[i] = []rune(strings.ToLower(c))[0]
+		} else {
+			runes[i] = []rune(strings.ToUpper(c))[0]
+		}
 	}
 
 	return string(runes)
