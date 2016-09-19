@@ -2,6 +2,7 @@ package pathutil
 
 import (
 	"io/ioutil"
+	"os"
 	"testing"
 
 	"github.com/frozzare/go-assert"
@@ -22,4 +23,8 @@ func TestRealPathTmp(t *testing.T) {
 	}
 
 	assert.Equal(t, path+"/dat", RealPath("dat"))
+
+	if err = os.Remove(path + "/dat"); err != nil {
+		panic(err)
+	}
 }
