@@ -14,7 +14,6 @@ func NewClient(client *http.Client) *Client {
 	}
 
 	// Set a custom default transport instead of the default transport.
-	// https://golang.org/src/net/http/transport.go#L33
 	if client.Transport == nil {
 		client.Transport = DefaultTransport
 	}
