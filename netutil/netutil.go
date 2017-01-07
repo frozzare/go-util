@@ -7,7 +7,7 @@ import (
 
 // RandomPort will find a free port that can be used.
 func RandomPort() (int, error) {
-    l, err := net.Listen("tcp", ":0")
+	l, err := net.Listen("tcp", ":0")
 
 	if err != nil {
 		return 0, err
@@ -29,5 +29,5 @@ func RandomPort() (int, error) {
 		return 0, err
 	}
 
-    return p2, nil
+	return p2, nil
 }

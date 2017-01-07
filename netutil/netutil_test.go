@@ -1,8 +1,8 @@
 package netutil
 
 import (
-	"testing"
 	"github.com/frozzare/go-assert"
+	"testing"
 )
 
 func TestRandomPort(t *testing.T) {
