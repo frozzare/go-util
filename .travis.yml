@@ -1,16 +1,8 @@
 language: go
 go:
-  - 1.5
-  - 1.6
   - 1.7
+  - 1.8
   - tip
 
-env:
-  global:
-    - GO15VENDOREXPERIMENT=1
-
 script:
-  - go fmt $(go list ./... | grep -v /vendor/)
-  - go vet $(go list ./... | grep -v /vendor/)
-  - go test -i -race $(go list ./... | grep -v /vendor/)
-  - go test -v -race $(go list ./... | grep -v /vendor/)
+  - go test -race $(go list ./... | grep -v /vendor/)
