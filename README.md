@@ -2,6 +2,12 @@
 
 Personal collection of various go utility packages.
 
+## Installation
+
+```
+go get -u github.com/dropbox/godropbox
+```
+
 ## Documentation
 
 See https://godoc.org/github.com/frozzare/go-util for modules documentation.
