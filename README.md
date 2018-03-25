@@ -5,7 +5,7 @@ Personal collection of various go utility packages.
 ## Installation
 
 ```
-go get -u github.com/dropbox/godropbox
+go get -u github.com/frozzare/go-util
 ```
 
 ## Documentation
