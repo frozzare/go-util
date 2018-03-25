@@ -21,8 +21,8 @@ func getArgInt(def int, i int, args ...interface{}) int {
 	return getArg(def, i, args...).(int)
 }
 
-// ToBool will convert argument to bool or return a error.
-func ToBool(value interface{}) (bool, error) {
+// Bool converts argument to bool or return a error.
+func Bool(value interface{}) (bool, error) {
 	switch value.(type) {
 	case bool:
 		return value.(bool), nil
@@ -51,8 +51,19 @@ func ToBool(value interface{}) (bool, error) {
 	}
 }
 
-// ToFloat32 will convert argument to float32 or return a error.
-func ToFloat32(value interface{}) (float32, error) {
+// MustBool converts argument to bool or panic if an error occurred.
+func MustBool(value interface{}) bool {
+	v, err := Bool(value)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return v
+}
+
+// Float32 will converts argument to float32 or return a error.
+func Float32(value interface{}) (float32, error) {
 	switch value.(type) {
 	case bool:
 		if value.(bool) {
@@ -86,8 +97,19 @@ func ToFloat32(value interface{}) (float32, error) {
 	}
 }
 
-// ToFloat64 will convert argument to float64 or return a error.
-func ToFloat64(value interface{}) (float64, error) {
+// MustFloat32 converts argument to float32 or panic if an error occurred.
+func MustFloat32(value interface{}) float32 {
+	v, err := Float32(value)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return v
+}
+
+// Float64 will converts argument to float64 or return a error.
+func Float64(value interface{}) (float64, error) {
 	switch value.(type) {
 	case bool:
 		if value.(bool) {
@@ -121,8 +143,19 @@ func ToFloat64(value interface{}) (float64, error) {
 	}
 }
 
-// ToInt will convert argument to int or return a error.
-func ToInt(value interface{}) (int, error) {
+// MustFloat64 converts argument to float64 or panic if an error occurred.
+func MustFloat64(value interface{}) float64 {
+	v, err := Float64(value)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return v
+}
+
+// Int will converts argument to int or return a error.
+func Int(value interface{}) (int, error) {
 	switch value.(type) {
 	case bool:
 		if value.(bool) {
@@ -160,8 +193,19 @@ func ToInt(value interface{}) (int, error) {
 	}
 }
 
-// ToString will convert argument to string or return a error.
-func ToString(args ...interface{}) (string, error) {
+// MustInt converts argument to int or panic if an error occurred.
+func MustInt(value interface{}) int {
+	v, err := Int(value)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return v
+}
+
+// String will converts argument to string or return a error.
+func String(args ...interface{}) (string, error) {
 	value := args[0]
 
 	switch value.(type) {
@@ -196,4 +240,15 @@ func ToString(args ...interface{}) (string, error) {
 	default:
 		return fmt.Sprintf("%v", value), nil
 	}
+}
+
+// MustString converts argument to string or panic if an error occurred.
+func MustString(value interface{}) string {
+	v, err := String(value)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return v
 }

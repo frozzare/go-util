@@ -6,7 +6,7 @@ import (
 	"github.com/frozzare/go-assert"
 )
 
-func TestToBool(t *testing.T) {
+func TestBool(t *testing.T) {
 	test := [][]interface{}{
 		{'f', true},
 		{true, true},
@@ -34,7 +34,7 @@ func TestToBool(t *testing.T) {
 	}
 
 	for _, item := range test {
-		actual, err := ToBool(item[0])
+		actual, err := Bool(item[0])
 
 		if len(item) > 2 {
 			assert.NotNil(t, err)
@@ -46,7 +46,7 @@ func TestToBool(t *testing.T) {
 	}
 }
 
-func TestToFloat32(t *testing.T) {
+func TestFloat32(t *testing.T) {
 	test := [][]interface{}{
 		{'f', 102.0},
 		{true, 1.0},
@@ -70,7 +70,7 @@ func TestToFloat32(t *testing.T) {
 	}
 
 	for _, item := range test {
-		actual, err := ToFloat32(item[0])
+		actual, err := Float32(item[0])
 
 		if len(item) > 2 {
 			assert.NotNil(t, err)
@@ -82,7 +82,7 @@ func TestToFloat32(t *testing.T) {
 	}
 }
 
-func TestToFloat64(t *testing.T) {
+func TestFloat64(t *testing.T) {
 	test := [][]interface{}{
 		{'f', 102.0},
 		{true, 1.0},
@@ -106,7 +106,7 @@ func TestToFloat64(t *testing.T) {
 	}
 
 	for _, item := range test {
-		actual, err := ToFloat64(item[0])
+		actual, err := Float64(item[0])
 
 		if len(item) > 2 {
 			assert.NotNil(t, err)
@@ -118,7 +118,7 @@ func TestToFloat64(t *testing.T) {
 	}
 }
 
-func TestToInt(t *testing.T) {
+func TestInt(t *testing.T) {
 	test := [][]interface{}{
 		{'f', 102},
 		{true, 1},
@@ -143,7 +143,7 @@ func TestToInt(t *testing.T) {
 	}
 
 	for _, item := range test {
-		actual, err := ToInt(item[0])
+		actual, err := Int(item[0])
 
 		if len(item) > 2 {
 			assert.NotNil(t, err)
@@ -155,7 +155,7 @@ func TestToInt(t *testing.T) {
 	}
 }
 
-func TestToString(t *testing.T) {
+func TestString(t *testing.T) {
 	test := [][]interface{}{
 		{[]byte("f"), "f"},
 		{true, "true"},
@@ -179,7 +179,7 @@ func TestToString(t *testing.T) {
 	}
 
 	for _, item := range test {
-		actual, err := ToString(item[0])
+		actual, err := String(item[0])
 
 		assert.Nil(t, err)
 		assert.Equal(t, item[1].(string), actual)
