@@ -1,4 +1,4 @@
-# go-util [![Build Status](https://travis-ci.org/frozzare/go-util.svg?branch=master)](https://travis-ci.org/frozzare/go-util)
+# go-util [![Build Status](https://travis-ci.org/frozzare/go-util.svg?branch=master)](https://travis-ci.org/frozzare/go-util) [![GoDoc](https://godoc.org/github.com/frozzare/go-util?status.svg)]
 
 Personal collection of various go utility packages. See individual folders for specifics.
 
