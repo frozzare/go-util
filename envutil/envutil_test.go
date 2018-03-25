@@ -42,6 +42,9 @@ func TestLoad(t *testing.T) {
 	for k, v := range test {
 		assert.Equal(t, v, Get(k))
 	}
+
+	err = Load("testdata/c.env")
+	assert.NotNil(t, err)
 }
 
 func TestSet(t *testing.T) {
